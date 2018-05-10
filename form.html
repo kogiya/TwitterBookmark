@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+    <head>
+        <!--Bootstrap-->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <!--Font Awsome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+        <!--angularjs-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+        <!--custom js-->
+        <script src="app.js" type="text/javascript"></script>
+    </head>
+    <body class="container">
+        <!--connect controller -->
+        <div ng-controller="AppController">
+            <div>
+                <h1><span style="color:#1da1f2; margin-right:0.5em;"><i class="fab fa-twitter"></i></span>Twitter Bookmarks</h1>
+                <div id="alertUsername" class="alert alert-danger" role="alert">
+                    Please Input <strong>Username</strong>
+                </div>
+                <form ng-submit="submit()">
+                    <div class="form-group">
+                        <label for="username">Username: </label>
+                        <!--connect input and &scope.username-->
+                        <input type="text" class="form-control"
+                        id="username" placeholder="Input twitter username" ng-model="username">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+            <hr>
+            <div>
+                <h1>User List</h1>
+                <div ng-if="users.length === 0">No user has been registered.</div>
+                <ul>
+                    <!--use ng-repeat to tag that you want to repeat-->
+                    <li style="padding: 5px" ng-repeat="user in users">
+                        <!--show user list here-->
+                        <a href="{{user.url}}" target="_blank">{{user.username}}</a>
+                        <span id="delete" style="margin-left: 3em; color:red;" ng-click="deleteUser($index)">
+                            <i class="fas fa-minus-circle"></i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+
+</html>
